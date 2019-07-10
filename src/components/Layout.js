@@ -25,13 +25,13 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${props => props.theme.fontFamily.sansSerif};
     font-size: ${props => props.theme.baseFontSize};
     h1 {
-      font-size: 3.052rem;
+      font-size: 2.5rem;
     }
     h2 {
-      font-size: 2.441rem;
+      font-size: 2.0rem;
     }
     h3 {
-      font-size: 1.953rem;
+      font-size: 1.853rem;
     }
     h4 {
       font-size: 1.563rem;
@@ -119,9 +119,10 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   pre {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    overflow: auto;
+    margin: 0;
+    white-space: pre;
+    line-height: 1.55rem;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
   figure {
     margin: 0 0 1rem 0;
@@ -181,8 +182,20 @@ const GlobalStyle = createGlobalStyle`
     overflow: hidden;
     vertical-align: middle;
   }
+  code {
+    background-color: rgba(255,229,100,0.2);
+    padding: .15em .2em .05em;
+    border-radius: .3em;
+    white-space: normal;
+  }
   [hidden] {
     display: none !important;
+  }
+  .highlight-line {
+    background-color: rgba(201, 167, 255, 0.2);
+    margin: 0 -10px;
+    padding: 0 5px;
+    border-left: 5px solid #c9a7ff;
   }
 `
 
@@ -204,9 +217,7 @@ const Layout = ({ children, customSEO }) => {
         <GlobalStyle />
         {children}
         <Footer>
-          &copy; 2019 by LekoArts. All rights reserved. <br />
-          <a href="https://github.com/LekoArts/gatsby-starter-minimal-blog">GitHub Repository</a> <br />
-          <span>Last build: {buildTime}</span>
+          <code>EOF</code>
         </Footer>
       </>
     </ThemeProvider>

@@ -1,0 +1,78 @@
+---
+date: "2019-07-10"
+title: "How to use TypeScript and Jest mocks"
+categories:
+  - Jest
+  - TypeScript
+---
+
+It's pretty common to mock modules in Jest. When using TypeScript that might be a bit harder because they are not automatically resolved by TypeScript.
+
+Let's say we are using a function `useFooContext` from a module called `foo`:
+
+```ts
+// foo.d.ts
+declare module "foo" {
+  interface FooContext {
+    bar: number;
+  }
+
+  export function useFooContext(): FooContext;
+}
+```
+
+So we create a mock of the module `foo` in the `__mocks__` folder:
+
+```ts
+// __mocks__/foo.ts
+export const useFooContext = jest.fn(() => {});
+```
+
+And finally, create our test file using mocked `foo`:
+
+```ts {5,6}
+// index.test.ts
+import { useFooContext } from "foo";
+
+test("sample test", () => {
+  // Error: Property 'mockImplementation' does not exist on type '() => FooContext'.ts(2339)
+  useFooContext.mockImplementation(() => {
+    bar: 123;
+  });
+
+  const context = useFooContext();
+
+  expect(context.bar).toBe(123);
+});
+```
+
+> Property 'mockImplementation' does not exist on type '() => FooContext'.ts(2339)
+
+TypeScript throws an error since it doesn't resolve mock files as Jest does. It expects `useFooContext` to have the type defined in its definition.
+
+### Solution
+
+We should hint TypeScript that the function imported is in fact a jest mock function.
+
+```ts
+import {
+  useFooContext,
+  FooContext // Get the type returned by `useFooContext`
+} from "foo";
+
+// Create a new variable and type it as jest.Mock passing the type
+const mockedUseFooContext = useFooContext as jest.Mock<FooContext>;
+
+test("sample test", () => {
+  // TypeScript will type check the value returned by the mock implementation 💯
+  mockedUseFooContext.mockImplementation(() => {
+    bar: "mocked return for this test";
+  });
+
+  const context = mockedUseFooContext();
+
+  expect(context.bar).toBe(123);
+});
+```
+
+I hope that's helpful!

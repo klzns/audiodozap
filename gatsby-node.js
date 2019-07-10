@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const path = require('path')
 
 // graphql function doesn't throw an error so we have to check to check for the result.errors to throw manually
 const wrapper = promise =>
@@ -27,6 +28,16 @@ exports.onCreateNode = ({ node, actions }) => {
       slug = `/${_.kebabCase(node.frontmatter.title)}`
     }
     createNodeField({ node, name: 'slug', value: slug })
+
+    const editLink = path.sep === '\\'
+      ? path.normalize(node.fileAbsolutePath).replace(__dirname, '').replace(/\\/gi, '/')
+      : path.normalize(node.fileAbsolutePath).replace(__dirname, '')
+
+    createNodeField({
+      node,
+      name: 'editLink',
+      value: `https://github.com/klzns/klzns.github.io/edit/master${editLink}`,
+    })
   }
 }
 
@@ -41,6 +52,7 @@ exports.createPages = async ({ graphql, actions }) => {
       {
         allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
           nodes {
+            fileAbsolutePath
             fields {
               slug
             }
