@@ -36,7 +36,7 @@ exports.onCreateNode = ({ node, actions }) => {
     createNodeField({
       node,
       name: 'editLink',
-      value: `https://github.com/klzns/klzns.github.io/edit/master${editLink}`,
+      value: `https://github.com/klzns/klzns.github.io/edit/source${editLink}`,
     })
   }
 }
