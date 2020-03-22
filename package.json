@@ -56,6 +56,8 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.2",
+    "danger": "^10.0.0",
+    "danger-plugin-spellcheck": "^1.5.0",
     "eslint": "^6.0.1",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^6.0.0",
