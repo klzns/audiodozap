@@ -6,8 +6,11 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.0.21",
     "@mdx-js/react": "^1.0.21",
+    "algoliasearch": "^4.2.0",
     "babel-plugin-styled-components": "^1.10.6",
+    "dotenv": "^8.2.0",
     "gatsby": "^2.13.7",
+    "gatsby-plugin-algolia": "^0.9.0",
     "gatsby-plugin-amp": "^0.2.2",
     "gatsby-plugin-catch-links": "^2.1.0",
     "gatsby-plugin-force-trailing-slashes": "^1.0.4",
@@ -33,9 +36,11 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
+    "react-instantsearch-dom": "^6.4.0",
     "react-live": "^2.1.2",
     "react-share": "^4.1.0",
     "styled-components": "^4.3.2",
+    "styled-icons": "^10.2.1",
     "typeface-bitter": "^0.0.71",
     "typeface-open-sans": "^0.0.54"
   },

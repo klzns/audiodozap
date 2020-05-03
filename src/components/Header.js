@@ -4,7 +4,12 @@ import styled, { css } from 'styled-components'
 
 import config from '../../config'
 import HeadphoneIcon from './HeadphoneIcon'
+<<<<<<< HEAD
 import Contribute from './Contribute'
+=======
+import Search from './Search'
+import styled from 'styled-components'
+>>>>>>> 2a101e9... WIP
 
 const Title = styled.h1`
   font-weight: bold;
@@ -19,6 +24,8 @@ const Small = styled.small`
   font-weight: normal;
   color: ${(props) => props.theme.colors.primaryLight};
 `
+
+const searchIndices = [{ name: 'Audios', title: `Audios`, hitComp: `AudioHit` }]
 
 const Header = () => (
   <>
@@ -39,6 +46,7 @@ const Header = () => (
       </Link>
     </header>
 
+    <Search collapse indices={searchIndices} />
     <div
       css={css`
         display: flex;
