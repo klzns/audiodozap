@@ -5,7 +5,6 @@ import { Link } from 'gatsby'
 import Audio from './Audio'
 import PostFooter from './PostFooter'
 import ArrowIcon from './ArrowIcon'
-import { useAmp } from './AmpContext'
 
 const Post = styled.article`
   display: flex;
@@ -79,7 +78,6 @@ function mapToValues(s, values) {
 const Article = ({ title, date, audio, slug, categories, children }) => {
   const url = `/audio${slug}`
   const color = mapToValues(title, colors)
-  const isAmp = useAmp()
 
   return (
     <Post>
