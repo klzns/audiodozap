@@ -225,10 +225,21 @@ const Layout = ({ children, customSEO }) => {
           {children}
         </div>
         <Footer>
+          <div>
+            Site desenvolvido por{' '}
+            <a href="https://www.linkedin.com/in/brenocalazans/">
+              Breno Calazans
+            </a>
+          </div>
+          <div>
+            <a href="https://github.com/klzns/audiodozap/">
+              Código aberto no GitHub
+            </a>
+          </div>
           <a target="_blank" href="https://icons8.com.br/icons/set/headphones">
-            Fones de ouvido icon
+            Ícone de fones de ouvido
           </a>{' '}
-          ícone por{' '}
+          por{' '}
           <a target="_blank" href="https://icons8.com.br">
             Icons8
           </a>
