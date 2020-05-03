@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useAmp } from './AmpContext'
 
-const baseUrl = 'http://d3dabxdkbtmy0c.cloudfront.net/'
+const baseUrl = 'https://d3dabxdkbtmy0c.cloudfront.net/'
 
 const audioExtension = /.(mp4|mp3|ogg)/
 
