@@ -5,6 +5,7 @@ import { Link } from 'gatsby'
 import Audio from './Audio'
 import PostFooter from './PostFooter'
 import ArrowIcon from './ArrowIcon'
+import { useAmp } from './AmpContext'
 
 const Post = styled.article`
   display: flex;
@@ -23,6 +24,17 @@ const Post = styled.article`
   }
 `
 
+const colors = [
+  '#91ab01', // Lemon green
+  '#e542a3', // Pink
+  '#6bcbef', // Light blue
+  '#35cd96', // Neon green
+  '#1f7aec', // Blue
+  '#ffa97a', // Orange
+  '#dfb610', // Yellow
+  '#00bfa5', // Teal
+]
+
 const Title = styled.h2`
   position: relative;
   text-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
@@ -31,7 +43,7 @@ const Title = styled.h2`
   margin-top: 0.5em;
 
   a {
-    color: ${(props) => props.color};
+    color: ${(props) => props.$color || colors[0]};
     font-weight: 500;
     &:hover {
       text-decoration: underline;
@@ -50,17 +62,6 @@ const Small = styled.div`
   }
 `
 
-const colors = [
-  '#91ab01', // Lemon green
-  '#e542a3', // Pink
-  '#6bcbef', // Light blue
-  '#35cd96', // Neon green
-  '#1f7aec', // Blue
-  '#ffa97a', // Orange
-  '#dfb610', // Yellow
-  '#00bfa5', // Teal
-]
-
 function djbHash(s) {
   let hash = 5381
 
@@ -78,6 +79,7 @@ function mapToValues(s, values) {
 const Article = ({ title, date, audio, slug, categories, children }) => {
   const url = `/audio${slug}`
   const color = mapToValues(title, colors)
+  const isAmp = useAmp()
 
   return (
     <Post>
@@ -95,7 +97,7 @@ const Article = ({ title, date, audio, slug, categories, children }) => {
         <ArrowIcon />
       </div>
       <Padding>
-        <Title color={color}>
+        <Title $color={color}>
           <Link to={url}>{title}</Link>
         </Title>
         <Audio file={audio} />

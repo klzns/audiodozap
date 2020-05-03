@@ -188,9 +188,6 @@ const GlobalStyle = createGlobalStyle`
     border-radius: .3em;
     white-space: normal;
   }
-  [hidden] {
-    display: none !important;
-  }
   .highlight-line {
     background-color: rgba(201, 167, 255, 0.2);
     margin: 0 -10px;

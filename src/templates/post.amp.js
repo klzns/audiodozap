@@ -9,6 +9,7 @@ import { AmpContextProvider } from '../components/AmpContext'
 const PostAmp = (props) => (
   <AmpContextProvider>
     <Helmet>
+      <html lang="pt" amp="" />
       <script
         async
         custom-element="amp-audio"

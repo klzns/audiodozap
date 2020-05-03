@@ -25,31 +25,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-amp`,
-      options: {
-        analytics: {
-          type: 'gtag',
-          dataCredentials: 'include',
-          config: {
-            vars: {
-              gtag_id: 'UA-165297121-1',
-              config: {
-                'UA-165297121-1': {
-                  page_location: '{{pathname}}',
-                },
-              },
-            },
-          },
-        },
-        canonicalBaseUrl: 'https://audiodozap.com.br/',
-        components: ['amp-audio'],
-        excludedPaths: ['/404*', '/'],
-        pathIdentifier: '/amp/',
-        relAmpHtmlPattern: '{{canonicalBaseUrl}}{{pathname}}{{pathIdentifier}}',
-        useAmpClientIdApi: true,
-      },
-    },
-    {
       resolve: 'gatsby-plugin-mdx',
       options: {
         gatsbyRemarkPlugins: [
@@ -97,5 +72,31 @@ module.exports = {
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify',
+    'gatsby-plugin-force-trailing-slashes',
+    {
+      resolve: `gatsby-plugin-amp`,
+      options: {
+        analytics: {
+          type: 'gtag',
+          dataCredentials: 'include',
+          config: {
+            vars: {
+              gtag_id: 'UA-165297121-1',
+              config: {
+                'UA-165297121-1': {
+                  page_location: '{{pathname}}',
+                },
+              },
+            },
+          },
+        },
+        canonicalBaseUrl: 'https://audiodozap.com.br/',
+        components: ['amp-audio'],
+        excludedPaths: ['/404*', '/'],
+        pathIdentifier: '/amp/',
+        relAmpHtmlPattern: '{{canonicalBaseUrl}}{{pathname}}{{pathIdentifier}}',
+        useAmpClientIdApi: true,
+      },
+    },
   ],
 }

@@ -17,7 +17,7 @@ const Audio = ({ file }) => {
       <>
         <amp-audio controls>
           <source src={url} />
-          <div fallback="true">
+          <div fallback="">
             <p>Your browser doesn’t support HTML5 audio</p>
           </div>
         </amp-audio>

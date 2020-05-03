@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 export default function HTML(props) {
+  console.log({ htmlAttributes: props.htmlAttributes })
   return (
     <html {...props.htmlAttributes}>
       <head>

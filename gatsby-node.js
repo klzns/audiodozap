@@ -80,7 +80,7 @@ exports.createPages = async ({ graphql, actions }) => {
     })
 
     createPage({
-      path: `/audio${n.fields.slug}/amp`,
+      path: `/audio${n.fields.slug}/amp/`,
       component: postAmpTemplate,
       context: {
         slug: n.fields.slug,
