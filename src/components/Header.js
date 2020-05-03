@@ -2,6 +2,21 @@ import React from 'react'
 import { Link } from 'gatsby'
 import config from '../../config'
 import HeadphoneIcon from './HeadphoneIcon'
+import styled from 'styled-components'
+
+const Title = styled.h1`
+  font-weight: bold;
+  font-size: 2em;
+  margin-left: 15px;
+  color: ${(props) => props.theme.colors.primary};
+`
+
+const Small = styled.small`
+  display: block;
+  font-size: 0.5em;
+  font-weight: normal;
+  color: ${(props) => props.theme.colors.primaryLight};
+`
 
 const Header = () => (
   <header>
@@ -13,15 +28,10 @@ const Header = () => (
         `}
       >
         <HeadphoneIcon />
-        <div
-          css={css`
-            font-weight: bold;
-            font-size: 2rem;
-            margin-left: 15px;
-          `}
-        >
+        <Title>
           {config.siteTitle}
-        </div>
+          <Small>{config.siteDescription}</Small>
+        </Title>
       </div>
     </Link>
   </header>
