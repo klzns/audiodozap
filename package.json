@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-minimal-blog",
-  "description": "Typography driven blog, focus on the content & minimal style. Powered by MDX. Live Preview with react-live.",
+  "name": "audiodozap",
+  "description": "",
   "version": "3.0.0",
-  "author": "LekoArts <hello@lekoarts.de> (https://www.lekoarts.de)",
+  "author": "Breno Calazans",
   "dependencies": {
     "@mdx-js/mdx": "^1.0.21",
     "@mdx-js/react": "^1.0.21",
