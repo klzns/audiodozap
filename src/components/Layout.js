@@ -18,12 +18,12 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
   ::selection {
-    color: ${props => props.theme.colors.bg};
-    background: ${props => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.bg};
+    background: ${(props) => props.theme.colors.primary};
   }
   html {
-    font-family: ${props => props.theme.fontFamily.sansSerif};
-    font-size: ${props => props.theme.baseFontSize};
+    font-family: ${(props) => props.theme.fontFamily.sansSerif};
+    font-size: ${(props) => props.theme.baseFontSize};
     h1 {
       font-size: 2.5rem;
     }
@@ -39,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
     h5 {
       font-size: 1.25rem;
     }
-    @media (max-width: ${props => props.theme.breakpoints.phone}) {
+    @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
       font-size: 16px;
       h1 {
         font-size: 2.488rem;
@@ -59,16 +59,16 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   body {
-    background: ${props => props.theme.colors.bg};
-    color: ${props => props.theme.colors.grey.default};
+    background: ${(props) => props.theme.colors.bg};
+    color: ${(props) => props.theme.colors.grey.default};
   }
   a {
-    color: ${props => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.primary};
     text-decoration: none;
-    transition: all ${props => props.theme.transitions.normal};
+    transition: all ${(props) => props.theme.transitions.normal};
   }
   a:hover {
-    color: ${props => props.theme.colors.primaryLight};
+    color: ${(props) => props.theme.colors.primaryLight};
   }
   a:not([href]):not([tabindex]) {
     color: inherit;
@@ -83,8 +83,8 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   h1, h2, h3, h4, h5, h6 {
-    color: ${props => props.theme.colors.grey.dark};
-    font-family: ${props => props.theme.fontFamily.serif};
+    color: ${(props) => props.theme.colors.grey.dark};
+    font-family: ${(props) => props.theme.fontFamily.serif};
   }
   blockquote {
     font-style: italic;
@@ -94,20 +94,20 @@ const GlobalStyle = createGlobalStyle`
   blockquote:before {
     content: "";
     position: absolute;
-    background: ${props => props.theme.colors.primary};
+    background: ${(props) => props.theme.colors.primary};
     height: 100%;
     width: 6px;
     margin-left: -1.6rem;
   }
   label {
     margin-bottom: .5rem;
-    color: ${props => props.theme.colors.grey.dark};
+    color: ${(props) => props.theme.colors.grey.dark};
   }
   input, textarea, button {
     font-size: 1rem;
   }
   textarea {
-    font-family: ${props => props.theme.fontFamily.sansSerif};
+    font-family: ${(props) => props.theme.fontFamily.sansSerif};
   }
   input, textarea {
     border-radius: .5rem;
@@ -146,12 +146,12 @@ const GlobalStyle = createGlobalStyle`
   }
   table {
     border-collapse: collapse;
-    background-color: ${props => props.theme.colors.bg};
+    background-color: ${(props) => props.theme.colors.bg};
   }
   caption {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-    color: ${props => props.theme.colors.color};
+    color: ${(props) => props.theme.colors.color};
     text-align: center;
     caption-side: bottom;
   }
@@ -201,10 +201,9 @@ const GlobalStyle = createGlobalStyle`
 
 const Footer = styled.footer`
   text-align: center;
+  flex-shrink: 0;
   padding: 3rem 1rem;
-  span {
-    font-size: 0.75rem;
-  }
+  font-size: 0.75rem;
 `
 
 const Layout = ({ children, customSEO }) => {
@@ -212,14 +211,32 @@ const Layout = ({ children, customSEO }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <>
+      <div
+        css={css`
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+        `}
+      >
         {!customSEO && <SEO buildTime={buildTime} />}
         <GlobalStyle />
-        {children}
+        <div
+          css={css`
+            flex-grow: 1;
+          `}
+        >
+          {children}
+        </div>
         <Footer>
-          <code>EOF</code>
+          <a target="_blank" href="https://icons8.com.br/icons/set/headphones">
+            Fones de ouvido icon
+          </a>{' '}
+          ícone por{' '}
+          <a target="_blank" href="https://icons8.com.br">
+            Icons8
+          </a>
         </Footer>
-      </>
+      </div>
     </ThemeProvider>
   )
 }

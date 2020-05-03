@@ -1,20 +1,28 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import config from '../../config'
-import styled from 'styled-components'
-
-const Avatar = styled.img`
-  border-radius: 100%;
-  width: 3.5rem;
-  height: 3.5rem;
-  margin-right: 1rem;
-`
+import HeadphoneIcon from './HeadphoneIcon'
 
 const Header = () => (
   <header>
     <Link to="/">
-      <Avatar src="/social/avatar.jpg" />
-      {config.siteTitle}
+      <div
+        css={css`
+          display: flex;
+          align-items: center;
+        `}
+      >
+        <HeadphoneIcon />
+        <div
+          css={css`
+            font-weight: bold;
+            font-size: 2rem;
+            margin-left: 15px;
+          `}
+        >
+          {config.siteTitle}
+        </div>
+      </div>
     </Link>
   </header>
 )

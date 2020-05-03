@@ -14,29 +14,31 @@ const Title = styled.h3`
   margin-bottom: 0.75rem;
 `
 
-const Category = ({
+const Categorias = ({
   data: {
     allMdx: { group },
   },
 }) => (
   <Layout>
     <Wrapper>
-      <Helmet title={`Categories | ${config.siteTitle}`} />
+      <Helmet title={`Categorias | ${config.siteTitle}`} />
       <Header />
-      <SectionTitle>Categories</SectionTitle>
-      {group.map(category => (
+      <SectionTitle>Categorias</SectionTitle>
+      {group.map((category) => (
         <Title key={category.fieldValue}>
-          <Link to={`/categories/${kebabCase(category.fieldValue)}`}>{category.fieldValue}</Link> (
-          {category.totalCount})
+          <Link to={`/categorias/${kebabCase(category.fieldValue)}`}>
+            {category.fieldValue}
+          </Link>{' '}
+          ({category.totalCount})
         </Title>
       ))}
     </Wrapper>
   </Layout>
 )
 
-export default Category
+export default Categorias
 
-Category.propTypes = {
+Categorias.propTypes = {
   data: PropTypes.shape({
     allMdx: PropTypes.shape({
       group: PropTypes.array.isRequired,

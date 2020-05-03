@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link, graphql } from 'gatsby'
-import styled from 'styled-components'
+import { graphql } from 'gatsby'
 
-import { Layout, Article, Wrapper, Header, Content } from '../components'
+import { Layout, Article, Wrapper, Header } from '../components'
 
 const IndexPage = ({
   data: {
@@ -14,12 +13,11 @@ const IndexPage = ({
     <Wrapper>
       <Header />
 
-      {posts.map(post => (
+      {posts.map((post) => (
         <Article
           title={post.frontmatter.title}
           date={post.frontmatter.date}
-          excerpt={post.excerpt}
-          timeToRead={post.timeToRead}
+          audio={post.frontmatter.audio}
           slug={post.fields.slug}
           categories={post.frontmatter.categories}
           key={post.fields.slug}
@@ -48,7 +46,8 @@ export const IndexQuery = graphql`
         }
         frontmatter {
           title
-          date(formatString: "YYYY-MM-DD")
+          audio
+          date(formatString: "DD/MM/YYYY")
           categories
         }
         excerpt(pruneLength: 200)

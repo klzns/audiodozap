@@ -4,11 +4,13 @@ import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import { preToCodeBlock } from 'mdx-utils'
 import Code from './src/components/Code'
+import Audio from './src/components/Audio'
+import Transcription from './src/components/Transcription'
 
 // components is its own object outside of render so that the references to
 // components are stable
 const components = {
-  pre: preProps => {
+  pre: (preProps) => {
     const props = preToCodeBlock(preProps)
     // if there's a codeString and some props, we passed the test
     if (props) {
@@ -18,5 +20,9 @@ const components = {
     return <pre {...preProps} />
   },
   wrapper: ({ children }) => <>{children}</>,
+  Audio,
+  Transcription,
 }
-export const wrapRootElement = ({ element }) => <MDXProvider components={components}>{element}</MDXProvider>
+export const wrapRootElement = ({ element }) => (
+  <MDXProvider components={components}>{element}</MDXProvider>
+)

@@ -37,17 +37,16 @@ function calculateLinesToHighlight(meta) {
   if (RE.test(meta)) {
     const lineNumbers = RE.exec(meta)[1]
       .split(',')
-      .map(v => v.split('-').map(y => parseInt(y, 10)))
-    return index => {
+      .map((v) => v.split('-').map((y) => parseInt(y, 10)))
+    return (index) => {
       const lineNumber = index + 1
       const inRange = lineNumbers.some(([start, end]) =>
-        end ? lineNumber >= start && lineNumber <= end : lineNumber === start,
+        end ? lineNumber >= start && lineNumber <= end : lineNumber === start
       )
       return inRange
     }
-  } else {
-    return () => false
   }
+  return () => false
 }
 
 const Code = ({ codeString, language, metastring, ...props }) => {
@@ -63,20 +62,31 @@ const Code = ({ codeString, language, metastring, ...props }) => {
     )
   }
   return (
-    <Highlight {...defaultProps} code={codeString} language={language} theme={theme}>
+    <Highlight
+      {...defaultProps}
+      code={codeString}
+      language={language}
+      theme={theme}
+    >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Wrapper>
           <Pre className={className} style={style}>
             {tokens.map((line, i) => (
-              <div {...getLineProps({ line, key: i, className: shouldHighlightLine(i) ? 'highlight-line' : '' })}>
+              <div
+                {...getLineProps({
+                  line,
+                  key: i,
+                  className: shouldHighlightLine(i) ? 'highlight-line' : '',
+                })}
+              >
                 <span
-                    css={css`
-                      display: inline-block;
-                      width: 2em;
-                      user-select: none;
-                      opacity: 0.3;
-                    `}
-                  >
+                  css={css`
+                    display: inline-block;
+                    width: 2em;
+                    user-select: none;
+                    opacity: 0.3;
+                  `}
+                >
                   {i + 1}
                 </span>
                 {line.map((token, key) => (

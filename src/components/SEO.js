@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 
 import config from '../../config'
 
-const SEO = props => {
+const SEO = (props) => {
   const { postNode, postPath, article, buildTime } = props
 
   let title
@@ -54,7 +54,7 @@ const SEO = props => {
       '@type': 'Person',
       name: config.author,
     },
-    datePublished: '2019-01-07T10:30:00+01:00',
+    datePublished: '2020-05-02T10:30:00+01:00',
     dateModified: buildTime,
     image: {
       '@type': 'ImageObject',
@@ -63,7 +63,6 @@ const SEO = props => {
   }
 
   // Initial breadcrumb list
-
   const itemListElement = [
     {
       '@type': 'ListItem',
@@ -72,14 +71,6 @@ const SEO = props => {
         name: 'Homepage',
       },
       position: 1,
-    },
-    {
-      '@type': 'ListItem',
-      item: {
-        '@id': `${homeURL}/contact`,
-        name: 'Contact',
-      },
-      position: 2,
     },
   ]
 
@@ -148,26 +139,41 @@ const SEO = props => {
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="image" content={image} />
-      <meta name="gatsby-starter" content="Gatsby Starter Minimal Blog" />
       <meta property="og:locale" content={config.ogLanguage} />
-      <meta property="og:site_name" content={config.ogSiteName ? config.ogSiteName : ''} />
+      <meta
+        property="og:site_name"
+        content={config.ogSiteName ? config.ogSiteName : ''}
+      />
       <meta property="og:url" content={URL} />
       <meta property="og:type" content={article ? 'article' : 'website'} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
       <meta property="og:image:alt" content={description} />
-      {config.siteFBAppID && <meta property="fb:app_id" content={config.siteFBAppID} />}
+      {config.siteFBAppID && (
+        <meta property="fb:app_id" content={config.siteFBAppID} />
+      )}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:creator" content={config.userTwitter ? config.userTwitter : ''} />
+      <meta
+        name="twitter:creator"
+        content={config.userTwitter ? config.userTwitter : ''}
+      />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:url" content={config.siteUrl} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
       <meta name="twitter:image:alt" content={description} />
       {/* Insert schema.org data conditionally (webpage/article) + everytime (breadcrumbs) */}
-      {!article && <script type="application/ld+json">{JSON.stringify(schemaOrgWebPage)}</script>}
-      {article && <script type="application/ld+json">{JSON.stringify(schemaArticle)}</script>}
+      {!article && (
+        <script type="application/ld+json">
+          {JSON.stringify(schemaOrgWebPage)}
+        </script>
+      )}
+      {article && (
+        <script type="application/ld+json">
+          {JSON.stringify(schemaArticle)}
+        </script>
+      )}
       <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
     </Helmet>
   )
