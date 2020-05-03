@@ -41,7 +41,7 @@ module.exports = {
             },
           },
         },
-        canonicalBaseUrl: 'http://audiodozap.com.br/',
+        canonicalBaseUrl: 'https://audiodozap.com.br/',
         components: ['amp-audio'],
         excludedPaths: ['/404*', '/'],
         pathIdentifier: '/amp/',

@@ -1,3 +1,3 @@
 User-agent: *
 
-sitemap: http://audiodozap.com.br
+sitemap: https://audiodozap.com.br
