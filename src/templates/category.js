@@ -18,7 +18,7 @@ const Category = ({ pageContext: { category }, data: { allMdx } }) => {
   const { nodes, totalCount } = allMdx
   const subline = `${totalCount} post${
     totalCount === 1 ? '' : 's'
-  } tagueado com "${category}"`
+  } com a tag "${category}"`
 
   return (
     <Layout>
@@ -26,7 +26,7 @@ const Category = ({ pageContext: { category }, data: { allMdx } }) => {
         <Helmet title={`Categoria: ${category} | ${config.siteTitle}`} />
         <Header />
 
-        <SectionTitle>Category &ndash; {category}</SectionTitle>
+        <SectionTitle>Categoria &ndash; {category}</SectionTitle>
         <Subline sectionTitle>
           {subline} (Ver <Link to="/categorias">todas as categorias</Link>)
         </Subline>
@@ -34,7 +34,7 @@ const Category = ({ pageContext: { category }, data: { allMdx } }) => {
           <Article
             title={post.frontmatter.title}
             date={post.frontmatter.date}
-            excerpt={post.excerpt}
+            audio={post.frontmatter.audio}
             slug={post.fields.slug}
             categories={post.frontmatter.categories}
             key={post.fields.slug}
@@ -69,6 +69,7 @@ export const postQuery = graphql`
       nodes {
         frontmatter {
           title
+          audio
           date(formatString: "DD/MM/YYYY")
           categories
         }

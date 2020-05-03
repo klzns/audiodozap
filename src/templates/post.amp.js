@@ -48,6 +48,7 @@ export const postQuery = graphql`
         title
         date(formatString: "DD/MM/YYYY")
         categories
+        audio
       }
       timeToRead
       parent {
