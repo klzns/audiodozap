@@ -1,5 +1,4 @@
 import React from 'react'
-import Tags from './Tags'
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -8,7 +7,8 @@ import {
   WhatsappShareButton,
   WhatsappIcon,
 } from 'react-share'
-import {} from 'react-share'
+
+import Tags from './Tags'
 import config from '../../config'
 
 const iconSize = 40
