@@ -5,7 +5,10 @@ import { Link, graphql } from 'gatsby'
 import styled from 'styled-components'
 import kebabCase from 'lodash/kebabCase'
 
-import { Layout, Wrapper, Header, SectionTitle } from '../components'
+import Layout from '../components/Layout'
+import Wrapper from '../components/Wrapper'
+import Header from '../components/Header'
+import SectionTitle from '../components/SectionTitle'
 import config from '../../config'
 
 const Title = styled.h3`

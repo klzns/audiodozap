@@ -1,26 +1,22 @@
+/* eslint-disable react/jsx-pascal-case */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import styled from 'styled-components'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import PostFooter from '../components/PostFooter'
 
-import {
-  Layout,
-  Wrapper,
-  Header,
-  Subline,
-  SEO,
-  PrevNext,
-  Article,
-} from '../components'
+import Layout from '../components/Layout'
+import Wrapper from '../components/Wrapper'
+import Header from '../components/Header'
+import SEO from '../components/SEO'
+import PrevNext from '../components/PrevNext'
+import Article from '../components/Article'
 
 const Post = ({
   pageContext: { slug, prev, next },
   data: { mdx: postNode },
 }) => {
   const post = postNode.frontmatter
-  const url = `/audio${slug}`
+  const url = `/audio${slug}/`
 
   return (
     <Layout customSEO>

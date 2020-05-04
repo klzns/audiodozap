@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
-import Post from './post'
 
+import Post from './post'
 import { AmpContextProvider } from '../components/AmpContext'
 
 const PostAmp = (props) => (
@@ -14,7 +14,7 @@ const PostAmp = (props) => (
         async
         custom-element="amp-audio"
         src="https://cdn.ampproject.org/v0/amp-audio-0.1.js"
-      ></script>
+      />
     </Helmet>
     <Post {...props} />
   </AmpContextProvider>

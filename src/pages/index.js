@@ -2,7 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
-import { Layout, Article, Wrapper, Header } from '../components'
+import Layout from '../components/Layout'
+import Wrapper from '../components/Wrapper'
+import Header from '../components/Header'
+import Article from '../components/Article'
 
 const IndexPage = ({
   data: {

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 
 import Audio from './Audio'
@@ -42,6 +42,7 @@ const Title = styled.h2`
   font-size: 1.4em;
   margin-bottom: 0.75em;
   margin-top: 0.5em;
+  color: ${(props) => props.$color || colors[0]};
 
   a {
     color: ${(props) => props.$color || colors[0]};
@@ -74,11 +75,11 @@ function djbHash(s) {
 
 function mapToValues(s, values) {
   const hash = djbHash(s)
-  return values[parseInt(hash.toString()[0]) % values.length]
+  return values[parseInt(hash.toString()[0], 10) % values.length]
 }
 
 const Article = ({ title, date, audio, slug, categories, children }) => {
-  const url = `/audio${slug}`
+  const url = `/audio${slug}/`
   const color = mapToValues(title, colors)
 
   return (
@@ -98,7 +99,7 @@ const Article = ({ title, date, audio, slug, categories, children }) => {
       </div>
       <Padding>
         <Title $color={color}>
-          <Link to={url}>{title}</Link>
+          {children ? title : <Link to={url}>{title}</Link>}
         </Title>
         <Audio file={audio} />
         {!children && (
@@ -121,4 +122,5 @@ Article.propTypes = {
   audio: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   categories: PropTypes.array.isRequired,
+  children: PropTypes.any,
 }

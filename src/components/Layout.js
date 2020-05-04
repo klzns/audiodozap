@@ -1,6 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
+import styled, {
+  css,
+  ThemeProvider,
+  createGlobalStyle,
+} from 'styled-components'
 
 import SEO from './SEO'
 import theme from '../../config/theme'

@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
 import { useAmp } from './AmpContext'
 import DownloadIcon from './DownloadIcon'
-import styled from 'styled-components'
 
 const baseUrl = 'https://d3dabxdkbtmy0c.cloudfront.net/'
 

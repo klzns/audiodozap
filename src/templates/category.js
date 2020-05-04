@@ -2,16 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { Link, graphql } from 'gatsby'
-import styled from 'styled-components'
 
-import {
-  Layout,
-  Wrapper,
-  Header,
-  Subline,
-  Article,
-  SectionTitle,
-} from '../components'
+import Layout from '../components/Layout'
+import Wrapper from '../components/Wrapper'
+import Header from '../components/Header'
+import Subline from '../components/Subline'
+import SectionTitle from '../components/SectionTitle'
+import Article from '../components/Article'
 import config from '../../config'
 
 const Category = ({ pageContext: { category }, data: { allMdx } }) => {
