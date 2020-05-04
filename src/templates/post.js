@@ -15,15 +15,6 @@ import {
   Article,
 } from '../components'
 
-const Title = styled.h1`
-  margin-bottom: 1rem;
-  font-size: 2rem;
-`
-
-const PostContent = styled.div`
-  margin-top: 2rem;
-`
-
 const Post = ({
   pageContext: { slug, prev, next },
   data: { mdx: postNode },
@@ -43,9 +34,7 @@ const Post = ({
           slug={slug}
           categories={post.categories}
         >
-          <PostContent>
-            <MDXRenderer>{postNode.body}</MDXRenderer>
-          </PostContent>
+          <MDXRenderer>{postNode.body}</MDXRenderer>
         </Article>
         <PrevNext prev={prev} next={next} />
       </Wrapper>

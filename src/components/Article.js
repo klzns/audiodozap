@@ -2,9 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
+
 import Audio from './Audio'
 import PostFooter from './PostFooter'
 import ArrowIcon from './ArrowIcon'
+import Transcription from './Transcription'
 
 const Post = styled.article`
   display: flex;
@@ -104,7 +106,7 @@ const Article = ({ title, date, audio, slug, categories, children }) => {
             <Link to={url}>Ler transcrição</Link>
           </Small>
         )}
-        {children}
+        {children && <Transcription>{children}</Transcription>}
       </Padding>
       <PostFooter categories={categories} date={date} url={url} />
     </Post>

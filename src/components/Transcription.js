@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const Bold = styled.h3`
   font-weight: bold;
   font-size: 1rem;
-  margin: 0.75em 0;
+  margin-top: 2em;
 `
 
 const Transcription = ({ children }) => {
@@ -16,7 +16,7 @@ const Transcription = ({ children }) => {
       `}
     >
       <Bold>[Transcrição]</Bold>
-      <p>{children}</p>
+      {children}
     </div>
   )
 }
