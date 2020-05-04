@@ -9,9 +9,13 @@ import { Layout, Wrapper, Header, SectionTitle } from '../components'
 import config from '../../config'
 
 const Title = styled.h3`
-  position: relative;
-  text-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-  margin-bottom: 0.75rem;
+  margin: 0.75rem 0;
+  font-size: 1.2em;
+`
+
+const Small = styled.span`
+  font-size: 0.8em;
+  color: #777;
 `
 
 const Categorias = ({
@@ -29,7 +33,7 @@ const Categorias = ({
           <Link to={`/categorias/${kebabCase(category.fieldValue)}`}>
             {category.fieldValue}
           </Link>{' '}
-          ({category.totalCount})
+          <Small>({category.totalCount})</Small>
         </Title>
       ))}
     </Wrapper>

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
+import { css } from 'styled-components'
 
 import { Layout, Article, Wrapper, Header } from '../components'
 
@@ -12,6 +13,14 @@ const IndexPage = ({
   <Layout>
     <Wrapper>
       <Header />
+
+      <div
+        css={css`
+          margin-top: 1em;
+        `}
+      >
+        <Link to="/categorias">Navegar por categorias</Link>
+      </div>
 
       {posts.map((post) => (
         <Article
