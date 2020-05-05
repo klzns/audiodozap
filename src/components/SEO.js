@@ -66,11 +66,9 @@ const SEO = (props) => {
   const itemListElement = [
     {
       '@type': 'ListItem',
-      item: {
-        '@id': homeURL,
-        name: 'Homepage',
-      },
       position: 1,
+      name: 'Áudios',
+      '@id': homeURL,
     },
   ]
 
@@ -117,11 +115,9 @@ const SEO = (props) => {
     // Push current blogpost into breadcrumb list
     itemListElement.push({
       '@type': 'ListItem',
-      item: {
-        '@id': URL,
-        name: title,
-      },
-      position: 3,
+      position: 2,
+      name: title,
+      item: URL,
     })
   }
 

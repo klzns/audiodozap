@@ -10,13 +10,14 @@ import Header from '../components/Header'
 import SEO from '../components/SEO'
 import PrevNext from '../components/PrevNext'
 import Article from '../components/Article'
+import { audioUrl } from '../modules/url'
 
 const Post = ({
   pageContext: { slug, prev, next },
   data: { mdx: postNode },
 }) => {
   const post = postNode.frontmatter
-  const url = `/audio${slug}/`
+  const url = audioUrl(slug)
 
   return (
     <Layout customSEO>

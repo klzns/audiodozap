@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
+import { audioUrl } from '../modules/url'
+
 const Wrapper = styled.div`
   display: flex;
   margin: 6rem auto 0 auto;
@@ -37,14 +39,14 @@ const PrevNext = ({ next, prev }) => (
     {prev && (
       <Prev>
         <span>Anterior</span>
-        <Link to={prev.fields.slug}>{prev.frontmatter.title}</Link>
+        <Link to={audioUrl(prev.fields.slug)}>{prev.frontmatter.title}</Link>
       </Prev>
     )}
 
     {next && (
       <Next>
         <span>Próximo</span>
-        <Link to={next.fields.slug}>{next.frontmatter.title}</Link>
+        <Link to={audioUrl(next.fields.slug)}>{next.frontmatter.title}</Link>
       </Next>
     )}
   </Wrapper>

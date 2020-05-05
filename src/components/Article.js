@@ -7,6 +7,7 @@ import Audio from './Audio'
 import PostFooter from './PostFooter'
 import ArrowIcon from './ArrowIcon'
 import Transcription from './Transcription'
+import { audioUrl } from '../modules/url'
 
 const Post = styled.article`
   display: flex;
@@ -79,7 +80,7 @@ function mapToValues(s, values) {
 }
 
 const Article = ({ title, date, audio, slug, categories, children }) => {
-  const url = `/audio${slug}/`
+  const url = audioUrl(slug)
   const color = mapToValues(title, colors)
 
   return (
@@ -98,7 +99,7 @@ const Article = ({ title, date, audio, slug, categories, children }) => {
         <ArrowIcon />
       </div>
       <Padding>
-        <Title $color={color}>
+        <Title as={children ? 'h1' : 'h2'} $color={color}>
           {children ? title : <Link to={url}>{title}</Link>}
         </Title>
         <Audio file={audio} />

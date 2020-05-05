@@ -20,7 +20,7 @@ const Small = styled.small`
   color: ${(props) => props.theme.colors.primaryLight};
 `
 
-const Header = () => (
+const Header = ({ index }) => (
   <>
     <header>
       <Link to="/">
@@ -31,7 +31,7 @@ const Header = () => (
           `}
         >
           <HeadphoneIcon />
-          <Title>
+          <Title as={index ? 'h1' : 'h2'}>
             {config.siteTitle}
             <Small>{config.siteDescription}</Small>
           </Title>

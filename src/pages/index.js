@@ -14,7 +14,7 @@ const IndexPage = ({
 }) => (
   <Layout>
     <Wrapper>
-      <Header />
+      <Header index />
       {posts.map((post) => (
         <Article
           title={post.frontmatter.title}

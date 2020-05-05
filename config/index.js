@@ -7,7 +7,7 @@ module.exports = {
   siteUrl: 'https://audiodozap.com.br', // Domain of your site. No trailing slash!
   siteLanguage: 'pt', // Language Tag on <html> element
   siteHeadline: 'Os melhores áudios do Brasil', // Headline for schema.org JSONLD
-  siteBanner: '', // Your image for og:image tag. You can find it in the /static folder
+  siteBanner: '/audiodozap.png', // Your image for og:image tag. You can find it in the /static folder
   favicon: 'src/favicon.png', // Your image for favicons. You can find it in the /src folder
   siteDescription: 'Os áudios mais engraçados enviados no WhatsApp.', // Your site description
   author: 'Áudio do Zap', // Author for schemaORGJSONLD
