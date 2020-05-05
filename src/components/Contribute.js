@@ -32,7 +32,7 @@ const Contribute = () => {
           src="/whatsapp-logo.png"
           alt="WhatsApp logo"
         />
-        Contribuir com novo áudio{' '}
+        Enviar novo áudio
       </Button>
     </div>
   )

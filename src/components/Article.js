@@ -59,7 +59,7 @@ const Padding = styled.div`
 `
 
 const Small = styled.div`
-  font-size: 0.75em;
+  font-size: 1em;
   a {
     color: #b5b5b5;
   }
