@@ -35,9 +35,7 @@
     "react-helmet": "^5.2.1",
     "react-live": "^2.1.2",
     "react-share": "^4.1.0",
-    "styled-components": "^4.3.2",
-    "typeface-bitter": "^0.0.71",
-    "typeface-open-sans": "^0.0.54"
+    "styled-components": "^4.3.2"
   },
   "keywords": [
     "gatsby",
