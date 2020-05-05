@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
 import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
@@ -9,7 +8,9 @@ import Header from '../components/Header'
 import Subline from '../components/Subline'
 import SectionTitle from '../components/SectionTitle'
 import Article from '../components/Article'
+import SEO from '../components/SEO'
 import config from '../../config'
+import { categoriesUrl, categoryUrl } from '../modules/url'
 
 const Category = ({ pageContext: { category }, data: { allMdx } }) => {
   const { nodes, totalCount } = allMdx
@@ -18,14 +19,18 @@ const Category = ({ pageContext: { category }, data: { allMdx } }) => {
   } com a tag "${category}"`
 
   return (
-    <Layout>
+    <Layout customSEO>
       <Wrapper>
-        <Helmet title={`Categoria: ${category} | ${config.siteTitle}`} />
+        <SEO
+          path={categoryUrl(category)}
+          title={`Categoria: ${category} | ${config.siteTitle}`}
+          description={`Áudios do WhatsApp classificados como "${category}".`}
+        />
         <Header />
 
         <SectionTitle>Categoria &ndash; {category}</SectionTitle>
         <Subline sectionTitle>
-          {subline} (Ver <Link to="/categorias">todas as categorias</Link>)
+          {subline} (Ver <Link to={categoriesUrl()}>todas as categorias</Link>)
         </Subline>
         {nodes.map((post) => (
           <Article

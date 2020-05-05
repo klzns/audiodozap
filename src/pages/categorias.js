@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
 import { Link, graphql } from 'gatsby'
 import styled from 'styled-components'
-import kebabCase from 'lodash/kebabCase'
 
 import Layout from '../components/Layout'
 import Wrapper from '../components/Wrapper'
 import Header from '../components/Header'
 import SectionTitle from '../components/SectionTitle'
+import SEO from '../components/SEO'
 import config from '../../config'
+import { categoryUrl, categoriesUrl } from '../modules/url'
 
 const Title = styled.h3`
   margin: 0.75rem 0;
@@ -26,14 +26,18 @@ const Categorias = ({
     allMdx: { group },
   },
 }) => (
-  <Layout>
+  <Layout customSEO>
     <Wrapper>
-      <Helmet title={`Categorias | ${config.siteTitle}`} />
+      <SEO
+        path={categoriesUrl()}
+        title={`Categorias | ${config.siteTitle}`}
+        description="Categorias de áudios do WhatsApp."
+      />
       <Header />
       <SectionTitle>Categorias</SectionTitle>
       {group.map((category) => (
         <Title key={category.fieldValue}>
-          <Link to={`/categorias/${kebabCase(category.fieldValue)}`}>
+          <Link to={categoryUrl(category.fieldValue)}>
             {category.fieldValue}
           </Link>{' '}
           <Small>({category.totalCount})</Small>

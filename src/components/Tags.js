@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
-import kebabCase from 'lodash/kebabCase'
+
+import { categoryUrl } from '../modules/url'
 
 const TagList = styled.ul`
   list-style: none;
@@ -26,7 +27,7 @@ const Tags = ({ tags }) => (
   <TagList>
     {tags.map((cat) => (
       <TagItem key={cat}>
-        <Link to={`/categorias/${kebabCase(cat)}`}>#{cat}</Link>
+        <Link to={categoryUrl(cat)}>#{cat}</Link>
       </TagItem>
     ))}
   </TagList>

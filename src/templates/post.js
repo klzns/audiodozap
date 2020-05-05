@@ -22,7 +22,7 @@ const Post = ({
   return (
     <Layout customSEO>
       <Wrapper>
-        <SEO postPath={url} postNode={postNode} article />
+        <SEO path={url} postNode={postNode} article />
         <Header />
         <Article
           title={post.title}

@@ -1,6 +1,7 @@
 {
   "extends": ["vtex-react"],
   "rules": {
-    "react/jsx-filename-extension": 0
+    "react/jsx-filename-extension": 0,
+    "react/jsx-pascal-case": 0
   }
 }

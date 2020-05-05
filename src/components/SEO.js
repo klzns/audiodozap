@@ -5,23 +5,20 @@ import Helmet from 'react-helmet'
 import config from '../../config'
 
 const SEO = (props) => {
-  const { postNode, postPath, article, buildTime } = props
-
-  let title
-  let description
+  const { postNode, path, article, buildTime } = props
 
   const realPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
   const homeURL = `${config.siteUrl}${realPrefix}`
-  const URL = `${homeURL}${postPath || ''}`
+  const URL = `${homeURL}${path || ''}`
   const image = `${homeURL}${config.siteBanner}`
+
+  let title = props.title || config.siteTitleAlt
+  let description = props.description || config.siteDescription
 
   if (article) {
     const postMeta = postNode.frontmatter
     title = `${postMeta.title} | ${config.siteTitle}`
     description = postNode.excerpt
-  } else {
-    title = config.siteTitleAlt
-    description = config.siteDescription
   }
 
   // schema.org in JSONLD format
@@ -62,17 +59,8 @@ const SEO = (props) => {
     },
   }
 
-  // Initial breadcrumb list
-  const itemListElement = [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Áudios',
-      '@id': homeURL,
-    },
-  ]
-
   let schemaArticle = null
+  let breadcrumb = {}
 
   if (article) {
     schemaArticle = {
@@ -112,21 +100,27 @@ const SEO = (props) => {
       },
       mainEntityOfPage: URL,
     }
-    // Push current blogpost into breadcrumb list
-    itemListElement.push({
-      '@type': 'ListItem',
-      position: 2,
-      name: title,
-      item: URL,
-    })
-  }
 
-  const breadcrumb = {
-    '@context': 'http://schema.org',
-    '@type': 'BreadcrumbList',
-    description: 'Breadcrumbs list',
-    name: 'Breadcrumbs',
-    itemListElement,
+    breadcrumb = {
+      '@context': 'http://schema.org',
+      '@type': 'BreadcrumbList',
+      description: 'Breadcrumbs list',
+      name: 'Breadcrumbs',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Áudios',
+          '@id': homeURL,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: title,
+          item: URL,
+        },
+      ],
+    }
   }
 
   return (
@@ -159,7 +153,6 @@ const SEO = (props) => {
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
       <meta name="twitter:image:alt" content={description} />
-      {/* Insert schema.org data conditionally (webpage/article) + everytime (breadcrumbs) */}
       {!article && (
         <script type="application/ld+json">
           {JSON.stringify(schemaOrgWebPage)}
@@ -170,7 +163,9 @@ const SEO = (props) => {
           {JSON.stringify(schemaArticle)}
         </script>
       )}
-      <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
+      {article && (
+        <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
+      )}
     </Helmet>
   )
 }
@@ -178,15 +173,17 @@ const SEO = (props) => {
 export default SEO
 
 SEO.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
   postNode: PropTypes.object,
-  postPath: PropTypes.string,
+  path: PropTypes.string,
   article: PropTypes.bool,
   buildTime: PropTypes.string,
 }
 
 SEO.defaultProps = {
   postNode: null,
-  postPath: null,
+  path: null,
   article: false,
   buildTime: null,
 }

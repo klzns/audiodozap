@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components'
 import config from '../../config'
 import HeadphoneIcon from './HeadphoneIcon'
 import Contribute from './Contribute'
+import { categoriesUrl } from '../modules/url'
 
 const Title = styled.h1`
   font-weight: bold;
@@ -47,8 +48,8 @@ const Header = ({ index }) => (
         justify-content: space-between;
       `}
     >
-      <div css={css``}>
-        <Link to="/categorias">Navegar por categorias</Link>
+      <div>
+        <Link to={categoriesUrl()}>Navegar por categorias</Link>
       </div>
 
       <Contribute />
