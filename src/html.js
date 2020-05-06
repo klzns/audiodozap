@@ -12,7 +12,6 @@ export default function HTML(props) {
           name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no"
         />
-        <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css" />
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>
