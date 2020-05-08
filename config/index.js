@@ -9,7 +9,8 @@ module.exports = {
   siteHeadline: 'Os melhores áudios do Brasil', // Headline for schema.org JSONLD
   siteBanner: '/audiodozap.png', // Your image for og:image tag. You can find it in the /static folder
   favicon: 'src/favicon.png', // Your image for favicons. You can find it in the /src folder
-  siteDescription: 'Os áudios mais engraçados enviados no WhatsApp.', // Your site description
+  siteDescription:
+    'Os áudios mais engraçados que viralizaram nos grupos de WhatsApp pra escutar, baixar e compartilhar com os amigos! Só a nata da zueira, o hall da fama, as pérolas!', // Your site description
   author: 'Áudio do Zap', // Author for schemaORGJSONLD
   siteLogo: '', // Image for schemaORGJSONLD
 

@@ -25,6 +25,17 @@ const AudioPage = ({
             ? ` | Página ${pageContext.currentPage.toString()}`
             : ''}
         </title>
+        <meta
+          name="description"
+          content={
+            pageContext.currentPage !== 1
+              ? `Página ${pageContext.currentPage.toString()} dos ${config.siteDescription.replace(
+                  'Os ',
+                  ''
+                )}`
+              : config.siteDescription
+          }
+        />
       </Helmet>
       <Header index />
       {posts.map((post) => (

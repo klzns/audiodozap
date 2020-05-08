@@ -34,7 +34,7 @@ const Header = ({ index }) => (
           <HeadphoneIcon />
           <Title as={index ? 'h1' : 'h2'}>
             {config.siteTitle}
-            <Small>{config.siteDescription}</Small>
+            <Small>O hall da fama dos áudios do WhatsApp</Small>
           </Title>
         </div>
       </Link>
