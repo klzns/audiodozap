@@ -28,7 +28,7 @@ const Category = ({ pageContext: { category }, data: { allMdx } }) => {
         />
         <Header />
 
-        <SectionTitle>Categoria &ndash; {category}</SectionTitle>
+        <SectionTitle as="h1">Categoria &ndash; {category}</SectionTitle>
         <Subline sectionTitle>
           {subline} (Ver <Link to={categoriesUrl()}>todas as categorias</Link>)
         </Subline>
