@@ -4,6 +4,15 @@ import Helmet from 'react-helmet'
 
 import config from '../../config'
 
+const mapCategories = (category) => `"${category}"`
+
+const generatePad = (title, categories) => {
+  const tags = categories.map(mapCategories).join(', ')
+  return ` Escute e baixe o áudio de WhatsApp "${title}". Classificado com ${
+    categories.length > 1 ? 'as tags' : 'a tag'
+  } ${tags}.`
+}
+
 const SEO = (props) => {
   const { postNode, path, article, buildTime } = props
 
@@ -18,7 +27,9 @@ const SEO = (props) => {
   if (article) {
     const postMeta = postNode.frontmatter
     title = `${postMeta.title} | ${config.siteTitle}`
-    description = postNode.excerpt
+    description =
+      `"${postNode.excerpt}"` +
+      generatePad(postMeta.title, postNode.frontmatter.categories)
   }
 
   // schema.org in JSONLD format
