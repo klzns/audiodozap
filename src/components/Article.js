@@ -55,13 +55,17 @@ const Title = styled.h2`
 `
 
 const Padding = styled.div`
-  padding: 0.5em 1em;
+  padding: 0.5em 1em 0;
 `
 
-const Small = styled.div`
-  font-size: 1em;
+const Excerpt = styled.div`
+  border-left: 4px solid #e2e2e2;
+  padding-left: 0.5em;
+  font-size: 0.85em;
+  margin-top: 1.25em;
+  line-height: 1.3em;
   a {
-    color: #b5b5b5;
+    color: #10a0e3;
   }
 `
 
@@ -79,7 +83,15 @@ function mapToValues(s, values) {
   return values[parseInt(hash.toString()[0], 10) % values.length]
 }
 
-const Article = ({ title, date, audio, slug, categories, children }) => {
+const Article = ({
+  title,
+  date,
+  audio,
+  slug,
+  excerpt,
+  categories,
+  children,
+}) => {
   const url = audioUrl(slug)
   const color = mapToValues(title, colors)
 
@@ -104,9 +116,15 @@ const Article = ({ title, date, audio, slug, categories, children }) => {
         </Title>
         <Audio file={audio} />
         {!children && (
-          <Small>
-            <Link to={url}>Ler transcrição</Link>
-          </Small>
+          <Excerpt>
+            {excerpt}
+            {excerpt.indexOf('…') !== -1 ? (
+              <>
+                {' '}
+                <Link to={url}>Ler mais</Link>
+              </>
+            ) : null}
+          </Excerpt>
         )}
         {children && <Transcription>{children}</Transcription>}
       </Padding>

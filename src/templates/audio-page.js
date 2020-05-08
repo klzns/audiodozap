@@ -23,6 +23,7 @@ const AudioPage = ({
           date={post.frontmatter.date}
           audio={post.frontmatter.audio}
           slug={post.fields.slug}
+          excerpt={post.excerpt}
           categories={post.frontmatter.categories}
           key={post.fields.slug}
         />
