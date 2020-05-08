@@ -118,7 +118,7 @@ const Article = ({
         {!children && (
           <Excerpt>
             {excerpt}
-            {excerpt.indexOf('…') !== -1 ? (
+            {excerpt && excerpt.indexOf('…') !== -1 ? (
               <>
                 {' '}
                 <Link to={url}>Ler mais</Link>

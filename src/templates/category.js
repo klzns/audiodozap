@@ -37,6 +37,7 @@ const Category = ({ pageContext: { category }, data: { allMdx } }) => {
             title={post.frontmatter.title}
             date={post.frontmatter.date}
             audio={post.frontmatter.audio}
+            excerpt={post.excerpt}
             slug={post.fields.slug}
             categories={post.frontmatter.categories}
             key={post.fields.slug}
