@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import Helmet from 'react-helmet'
 
 import Layout from '../components/Layout'
 import Wrapper from '../components/Wrapper'
 import Header from '../components/Header'
 import Article from '../components/Article'
 import Pagination from '../components/Pagination'
+import config from '../../config'
 
 const AudioPage = ({
   data: {
@@ -16,6 +18,14 @@ const AudioPage = ({
 }) => (
   <Layout>
     <Wrapper>
+      <Helmet>
+        <title>
+          {config.siteTitleAlt}
+          {pageContext.currentPage !== 1
+            ? ` | Página ${pageContext.currentPage.toString()}`
+            : ''}
+        </title>
+      </Helmet>
       <Header index />
       {posts.map((post) => (
         <Article

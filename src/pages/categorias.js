@@ -21,6 +21,15 @@ const Small = styled.span`
   color: #777;
 `
 
+const categorySample = (categories) => {
+  return categories
+    .slice()
+    .sort((a, b) => (a.totalCount > b.totalCount ? -1 : 1))
+    .slice(0, 15)
+    .map((category) => `"${category.fieldValue}"`)
+    .join(', ')
+}
+
 const Categorias = ({
   data: {
     allMdx: { group },
@@ -31,10 +40,12 @@ const Categorias = ({
       <SEO
         path={categoriesUrl()}
         title={`Categorias | ${config.siteTitle}`}
-        description="Categorias de áudios do WhatsApp."
+        description={`Todas as categorias de áudios do WhatsApp para escutar e baixar. Categorias como: ${categorySample(
+          group
+        )}.`}
       />
       <Header />
-      <SectionTitle>Categorias</SectionTitle>
+      <SectionTitle as="h1">Categorias</SectionTitle>
       {group.map((category) => (
         <Title key={category.fieldValue}>
           <Link to={categoryUrl(category.fieldValue)}>

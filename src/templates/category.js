@@ -18,13 +18,18 @@ const Category = ({ pageContext: { category }, data: { allMdx } }) => {
     totalCount === 1 ? '' : 's'
   } com a tag "${category}"`
 
+  const firstAudioTitles = nodes
+    .slice(0, 6)
+    .map((post) => `"${post.frontmatter.title}"`)
+    .join(', ')
+
   return (
     <Layout customSEO>
       <Wrapper>
         <SEO
           path={categoryUrl(category)}
           title={`Categoria: ${category} | ${config.siteTitle}`}
-          description={`Áudios do WhatsApp classificados como "${category}".`}
+          description={`Áudios do WhatsApp para escutar e baixar classificados como "${category}". Áudios como: ${firstAudioTitles}.`}
         />
         <Header />
 

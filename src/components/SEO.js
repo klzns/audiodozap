@@ -8,7 +8,7 @@ const mapCategories = (category) => `"${category}"`
 
 const generatePad = (title, categories) => {
   const tags = categories.map(mapCategories).join(', ')
-  return ` Escute e baixe o áudio de WhatsApp "${title}". Classificado com ${
+  return ` Escute e baixe o áudio do WhatsApp: "${title}". Classificado com ${
     categories.length > 1 ? 'as tags' : 'a tag'
   } ${tags}.`
 }
