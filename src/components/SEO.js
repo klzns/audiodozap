@@ -122,7 +122,7 @@ const SEO = (props) => {
           '@type': 'ListItem',
           position: 1,
           name: 'Áudios',
-          '@id': homeURL,
+          item: homeURL,
         },
         {
           '@type': 'ListItem',
