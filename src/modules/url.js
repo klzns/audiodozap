@@ -13,5 +13,5 @@ export const categoriesUrl = () => {
 }
 
 export const audioPageUrl = (page) => {
-  return `/pagina/${page}`
+  return `/pagina/${page}/`
 }
