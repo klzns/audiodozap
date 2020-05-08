@@ -37,6 +37,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const postTemplate = require.resolve('./src/templates/post.js')
   const postAmpTemplate = require.resolve('./src/templates/post.amp.js')
   const categoryTemplate = require.resolve('./src/templates/category.js')
+  const audioPageTemplate = require.resolve('./src/templates/audio-page.js')
 
   const result = await wrapper(
     graphql(`
@@ -64,6 +65,22 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   const posts = result.data.allMdx.nodes
+
+  const postsPerPage = 10
+  const numPages = Math.ceil(posts.length / postsPerPage)
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/` : `/pagina/${i + 1}`,
+      component: audioPageTemplate,
+      context: {
+        skip: i * postsPerPage,
+        total: posts.length,
+        limit: postsPerPage,
+        numPages,
+        currentPage: i + 1,
+      },
+    })
+  })
 
   posts.forEach((n, index) => {
     const next = index === 0 ? null : posts[index - 1]

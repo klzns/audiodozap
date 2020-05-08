@@ -6,11 +6,13 @@ import Layout from '../components/Layout'
 import Wrapper from '../components/Wrapper'
 import Header from '../components/Header'
 import Article from '../components/Article'
+import Pagination from '../components/Pagination'
 
-const IndexPage = ({
+const AudioPage = ({
   data: {
     allMdx: { nodes: posts },
   },
+  pageContext,
 }) => (
   <Layout>
     <Wrapper>
@@ -25,13 +27,20 @@ const IndexPage = ({
           key={post.fields.slug}
         />
       ))}
+      <Pagination
+        skip={pageContext.skip}
+        total={pageContext.total}
+        limit={pageContext.limit}
+        currentPage={pageContext.currentPage}
+        numPages={pageContext.numPages}
+      />
     </Wrapper>
   </Layout>
 )
 
-export default IndexPage
+export default AudioPage
 
-IndexPage.propTypes = {
+AudioPage.propTypes = {
   data: PropTypes.shape({
     allMdx: PropTypes.shape({
       nodes: PropTypes.array.isRequired,
@@ -39,9 +48,13 @@ IndexPage.propTypes = {
   }).isRequired,
 }
 
-export const IndexQuery = graphql`
-  query IndexQuery {
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+export const pageQuery = graphql`
+  query AudioPageQuery($skip: Int!, $limit: Int!) {
+    allMdx(
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: $limit
+      skip: $skip
+    ) {
       nodes {
         fields {
           slug
