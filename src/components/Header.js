@@ -21,7 +21,7 @@ const Small = styled.small`
   color: ${(props) => props.theme.colors.primaryLight};
 `
 
-const Header = ({ index }) => (
+const Header = ({ index, contribute = true }) => (
   <>
     <header>
       <Link to="/">
@@ -52,7 +52,7 @@ const Header = ({ index }) => (
         <Link to={categoriesUrl()}>Navegar por categorias</Link>
       </div>
 
-      <Contribute />
+      {contribute && <Contribute />}
     </div>
   </>
 )

@@ -23,7 +23,7 @@ const Post = ({
     <Layout customSEO>
       <Wrapper>
         <SEO path={url} postNode={postNode} article />
-        <Header />
+        <Header contribute={false} />
         <Article
           title={post.title}
           date={post.date}
