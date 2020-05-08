@@ -55,7 +55,12 @@ module.exports = {
       },
     },
     'gatsby-plugin-catch-links',
-    'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        exclude: ['**/amp/'],
+      },
+    },
     'gatsby-plugin-lodash',
     {
       resolve: 'gatsby-plugin-manifest',
