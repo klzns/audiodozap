@@ -7,7 +7,7 @@
     "@mdx-js/mdx": "^1.0.21",
     "@mdx-js/react": "^1.0.21",
     "babel-plugin-styled-components": "^1.10.6",
-    "gatsby": "^2.13.7",
+    "gatsby": "^2.21.24",
     "gatsby-plugin-amp": "^0.2.2",
     "gatsby-plugin-catch-links": "^2.1.0",
     "gatsby-plugin-force-trailing-slashes": "^1.0.4",
@@ -45,7 +45,7 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
-    "build": "gatsby build",
+    "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "dev": "gatsby develop -o",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
