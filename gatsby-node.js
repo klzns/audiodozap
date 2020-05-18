@@ -87,7 +87,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const prev = index === posts.length - 1 ? null : posts[index + 1]
 
     createPage({
-      path: `/audio${n.fields.slug}`,
+      path: `/audio${n.fields.slug}/`,
       component: postTemplate,
       context: {
         slug: n.fields.slug,
