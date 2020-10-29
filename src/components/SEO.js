@@ -26,7 +26,7 @@ const SEO = (props) => {
 
   if (article) {
     const postMeta = postNode.frontmatter
-    title = `${postMeta.title} | ${config.siteTitle}`
+    title = `Aúdio ${postMeta.title} | ${config.siteTitle}`
     description =
       `"${postNode.excerpt}"` +
       generatePad(postMeta.title, postNode.frontmatter.categories)
