@@ -68,6 +68,7 @@
     "eslint-plugin-react": "^7.14.2",
     "eslint-plugin-react-hooks": "^1.6.1",
     "gh-pages": "^2.0.1",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "video-converter": "^1.0.0"
   }
 }
