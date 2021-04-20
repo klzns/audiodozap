@@ -24,7 +24,33 @@ const Download = ({ url }) => {
   )
 }
 
-const Audio = ({ file }) => {
+function Share({ title, url }) {
+  if (!navigator.canShare) {
+    return null
+  }
+
+  async function handleClick() {
+    const blob = await fetch(url, { mode: 'cors' }).then((res) => res.blob())
+    const audioFile = new File([blob], 'audio.mp3', { type: 'audio/mp3' })
+
+    if (navigator.canShare({ files: [audioFile] })) {
+      navigator
+        .share({
+          files: [audioFile],
+          title,
+          text: 'Áudio do Zap',
+        })
+        .then(() => alert('Share was successful.'))
+        .catch((error) => alert(`Sharing failed ${error}`))
+    } else {
+      console.log(`Your system doesn't support sharing files.`)
+    }
+  }
+
+  return <button onClick={handleClick}>Share</button>
+}
+
+const Audio = ({ file, title }) => {
   const url = `${baseUrl}${file}`
   const amp = useAmp()
 
@@ -36,6 +62,7 @@ const Audio = ({ file }) => {
           <div fallback="">
             <p>Your browser doesn’t support HTML5 audio</p>
           </div>
+          <Share file={file} title={title} />
           <Download url={url} />
         </amp-audio>
       </>
@@ -55,6 +82,7 @@ const Audio = ({ file }) => {
         {/* <track default src={`/vtt/${trackFile}`} srcLang="pt" /> */}
         <p>Seu navegador não suporta o elemento audio.</p>
       </audio>
+      <Share file={file} title={title} />
       <Download url={url} />
     </div>
   )
@@ -62,6 +90,7 @@ const Audio = ({ file }) => {
 
 Audio.propTypes = {
   file: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 export default Audio

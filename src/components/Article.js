@@ -72,14 +72,16 @@ const Excerpt = styled.div`
 function djbHash(s) {
   let hash = 5381
 
-  for (let c of s) {
+  for (const c of s) {
     hash = hash * 33 + c.charCodeAt(0)
   }
+
   return hash
 }
 
 function mapToValues(s, values) {
   const hash = djbHash(s)
+
   return values[parseInt(hash.toString()[0], 10) % values.length]
 }
 
@@ -114,7 +116,7 @@ const Article = ({
         <Title as={children ? 'h1' : 'h2'} $color={color}>
           {children ? title : <Link to={url}>{title}</Link>}
         </Title>
-        <Audio file={audio} />
+        <Audio file={audio} title={title} />
         {!children && (
           <Excerpt>
             {excerpt}
@@ -141,5 +143,6 @@ Article.propTypes = {
   audio: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   categories: PropTypes.array.isRequired,
+  excerpt: PropTypes.string.isRequired,
   children: PropTypes.any,
 }
