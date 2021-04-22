@@ -130,7 +130,12 @@ const Article = ({
         )}
         {children && <Transcription>{children}</Transcription>}
       </Padding>
-      <PostFooter categories={categories} date={date} url={url} />
+      <PostFooter
+        categories={categories}
+        date={date}
+        title={title}
+        audio={audio}
+      />
     </Post>
   )
 }
