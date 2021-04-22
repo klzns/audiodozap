@@ -6,7 +6,7 @@ import { css } from 'styled-components'
 import { useAmp } from './AmpContext'
 import DownloadIcon from './DownloadIcon'
 
-const baseUrl = 'https://d3dabxdkbtmy0c.cloudfront.net/'
+export const baseUrl = 'https://d3dabxdkbtmy0c.cloudfront.net/'
 
 const Download = ({ url }) => {
   return (
@@ -24,7 +24,7 @@ const Download = ({ url }) => {
   )
 }
 
-const Audio = ({ file }) => {
+const Audio = ({ file, title }) => {
   const url = `${baseUrl}${file}`
   const amp = useAmp()
 
@@ -62,6 +62,7 @@ const Audio = ({ file }) => {
 
 Audio.propTypes = {
   file: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 export default Audio

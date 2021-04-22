@@ -28,6 +28,10 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-family: ${(props) => props.theme.fontFamily.sansSerif};
     font-size: ${(props) => props.theme.baseFontSize};
+    button {
+      font-family: ${(props) => props.theme.fontFamily.sansSerif};
+      font-size: ${(props) => props.theme.baseFontSize};
+    }
     h1 {
       font-size: 2.5rem;
     }

@@ -20,7 +20,6 @@ const TagItem = styled.li`
   border-radius: 9999px;
   background-color: #edf2f7;
   font-size: 0.875em;
-  margin-bottom: 0.5em;
 `
 
 const Tags = ({ tags }) => (

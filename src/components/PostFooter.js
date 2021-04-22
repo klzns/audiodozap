@@ -1,22 +1,11 @@
 import React from 'react'
-import {
-  FacebookShareButton,
-  FacebookIcon,
-  TwitterShareButton,
-  TwitterIcon,
-  WhatsappShareButton,
-  WhatsappIcon,
-} from 'react-share'
 
 import Tags from './Tags'
-import config from '../../config'
+import { baseUrl } from './Audio'
+import Share from './Share'
 
-const iconSize = 40
-
-const PostFooter = ({ categories, url }) => {
-  const realPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
-  const homeURL = `${config.siteUrl}${realPrefix}`
-  const finalUrl = `${homeURL}${url || ''}`
+const PostFooter = ({ categories, title, audio }) => {
+  const url = `${baseUrl}${audio}`
 
   return (
     <div
@@ -32,12 +21,13 @@ const PostFooter = ({ categories, url }) => {
         }
       `}
     >
-      <Tags tags={categories} />
       <div
         css={css`
           min-width: 135px;
+          display: none;
           @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
-            margin-top: 1em;
+            display: block;
+            margin-bottom: 1em;
           }
 
           button {
@@ -45,16 +35,9 @@ const PostFooter = ({ categories, url }) => {
           }
         `}
       >
-        <WhatsappShareButton url={finalUrl}>
-          <WhatsappIcon round size={iconSize} />
-        </WhatsappShareButton>
-        <TwitterShareButton url={finalUrl}>
-          <TwitterIcon round size={iconSize} />
-        </TwitterShareButton>
-        <FacebookShareButton url={finalUrl}>
-          <FacebookIcon round size={iconSize} />
-        </FacebookShareButton>
+        <Share url={url} title={title} />
       </div>
+      <Tags tags={categories} />
     </div>
   )
 }
