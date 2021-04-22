@@ -9,8 +9,14 @@ const Image = styled.img`
   height: 25px;
 `
 
+const canUseDOM = !!(
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
+)
+
 const Share = ({ title, url }) => {
-  if (!navigator.canShare) {
+  if (canUseDOM && !navigator.canShare) {
     return null
   }
 
