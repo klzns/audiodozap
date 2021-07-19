@@ -4,8 +4,8 @@ import DownloadIcon from './DownloadIcon'
 
 export const baseUrl = 'https://d3dabxdkbtmy0c.cloudfront.net/'
 
-function AudioPlayer({ file }: { file: string; title: string }) {
-  const url = `${baseUrl}${file}`
+function AudioPlayer({ audio }: { audio: string }) {
+  const url = `${baseUrl}${audio}`
 
   return (
     <div tw="flex items-center space-x-2">

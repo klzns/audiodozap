@@ -1,12 +1,12 @@
-import { getPostBySlug, getAllPosts } from '../../lib/api'
-import type { Post } from '../../lib/api'
-import markdownToHtml from '../../lib/markdownToHtml'
-import Audio from '../../components/audio/Audio'
-import Wrapper from '../../components/Wrapper'
-import Header from '../../components/Header'
+import { getPostBySlug, getAllPosts } from '../../../lib/api'
+import type { Post } from '../../../lib/api'
+import markdownToHtml from '../../../lib/markdownToHtml'
+import Audio from '../../../components/audio/Audio'
+import Wrapper from '../../../components/Wrapper'
+import Header from '../../../components/Header'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import SEODefault from '../../components/SEODefault'
-import SEOAudio from '../../components/SEOAudio'
+import SEODefault from '../../../components/SEODefault'
+import SEOAudio from '../../../components/SEOAudio'
 
 export const config = { amp: 'hybrid ' }
 

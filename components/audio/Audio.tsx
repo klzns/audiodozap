@@ -82,7 +82,7 @@ function Audio({
           )}
         </Title>
 
-        <AudioPlayer file={audio} title={title} />
+        <AudioPlayer audio={audio} />
 
         {!children && (
           <Excerpt>

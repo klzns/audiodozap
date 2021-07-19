@@ -2,6 +2,7 @@ import Head from 'next/head'
 import config from '../config'
 import { useRouter } from 'next/router'
 import { Post } from '../lib/api'
+import { audioPlayerUrl } from '../lib/url'
 
 const mapCategories = (category: string) => `"${category}"`
 
@@ -80,11 +81,18 @@ function SEOAudio({ post }: SEOAudioProps) {
       <meta property="og:image" content={image} />
       <meta property="og:image:alt" content={description} />
 
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:card" content="player" />
+      <meta name="twitter:site" content="@audiodozap" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
       <meta name="twitter:image:alt" content={description} />
+      <meta
+        name="twitter:player"
+        content={`${config.siteUrl}${audioPlayerUrl(post.slug)}`}
+      />
+      <meta name="twitter:player:width" content="300" />
+      <meta name="twitter:player:height" content="70" />
 
       <script type="application/ld+json">
         {JSON.stringify(schemaArticle)}
