@@ -28,14 +28,18 @@ function Pagination({ pageInfo, total }: PaginationProps) {
         {pageInfo.hasPreviousPage && (
           <li>
             <Link href={prevPage} passHref>
-              <Button rel="prev">← Anterior</Button>
+              <Button as="a" rel="prev">
+                ← Anterior
+              </Button>
             </Link>
           </li>
         )}
         {pageInfo.hasNextPage && (
           <li>
             <Link href={nextPage} passHref>
-              <Button rel="next">Próxima →</Button>
+              <Button as="a" rel="next">
+                Próxima →
+              </Button>
             </Link>
           </li>
         )}

@@ -8,16 +8,8 @@
   },
   "packageRules": [
     {
-      "packagePatterns": ["^eslint"],
-      "groupName": "eslint"
-    },
-    {
-      "packagePatterns": ["gatsby"],
-      "groupName": "gatsby"
-    },
-    {
-      "packagePatterns": ["@mdx-js"],
-      "groupName": "@mdx-js"
+      "packagePatterns": ["next"],
+      "groupName": "next"
     },
     {
       "packageNames": ["react", "react-dom"],

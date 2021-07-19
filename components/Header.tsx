@@ -1,6 +1,6 @@
 import tw, { styled } from 'twin.macro'
 
-import config from '../../config'
+import config from '../config'
 import HeadphoneIcon from './HeadphoneIcon'
 import Contribute from './Contribute'
 import { StyledLink } from './StyledLink'

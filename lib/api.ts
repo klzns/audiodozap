@@ -6,7 +6,7 @@ import { titleVariants } from '../components/audio/Title'
 import { colorSelection } from './colorSelection'
 
 export function getPosts() {
-  const postsDirectory = join(process.cwd(), '..', 'blog')
+  const postsDirectory = join(process.cwd(), 'audios')
 
   const directories = fs.readdirSync(postsDirectory)
 

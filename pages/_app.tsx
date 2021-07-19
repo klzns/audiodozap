@@ -18,7 +18,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
+        <meta charSet="utf-8" />
         <link rel="icon" href="/favicon.png" type="image/png" />
+        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no"
+        />
       </Head>
       <div tw="min-h-screen flex flex-col">
         <div tw="flex-grow">

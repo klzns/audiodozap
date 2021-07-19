@@ -1,10 +1,4 @@
 import NextLink from 'next/link'
-import type { LinkProps } from 'next/link'
-import type {
-  AnchorHTMLAttributes,
-  HTMLAttributes,
-  PropsWithChildren,
-} from 'react'
 import { styled } from 'twin.macro'
 
 const A = styled.a({

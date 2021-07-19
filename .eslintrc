@@ -1,7 +1,4 @@
 {
-  "extends": ["vtex-react"],
-  "rules": {
-    "react/jsx-filename-extension": 0,
-    "react/jsx-pascal-case": 0
-  }
+  "root": true,
+  "extends": ["next", "next/core-web-vitals"]
 }
