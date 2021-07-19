@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import tw, { styled } from 'twin.macro'
 
 import { Button } from './Button'
+import { baseUrl } from './audio/AudioPlayer'
 
 const Image = styled.img({
   marginRight: '0.5em',
@@ -12,18 +13,19 @@ const Image = styled.img({
 
 type ShareProps = {
   title: string
-  url: string
+  audio: string
 }
 
-function Share({ title, url }: ShareProps) {
-  const [canShare, setCanShare] = useState(null)
+function Share({ title, audio }: ShareProps) {
+  const [canShare, setCanShare] = useState<boolean>()
 
   useEffect(() => {
-    setCanShare((navigator as any).canShare)
+    setCanShare(Boolean((navigator as any).canShare))
   }, [])
 
   async function handleClick(e: any) {
     e.preventDefault()
+    const url = `${baseUrl}${audio}`
     const blob = await fetch(url, { mode: 'cors' }).then((res) => res.blob())
     const filesArray = [
       new File([blob], `${title}.mp3`, {

@@ -1,6 +1,6 @@
 import tw, { styled } from 'twin.macro'
 
-export const Button = styled.Button({
+export const Button = styled.button({
   color: '#009588',
   ...tw`
     flex

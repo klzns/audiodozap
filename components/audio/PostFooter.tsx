@@ -9,11 +9,9 @@ type PostFooterProps = {
 }
 
 function PostFooter({ categories, title, audio }: PostFooterProps) {
-  const url = `/${audio}`
-
   return (
     <div tw="block md:flex md:flex-col md:justify-between space-y-4">
-      <Share url={url} title={title} />
+      <Share audio={audio} title={title} />
       <Tags tags={categories} />
     </div>
   )
