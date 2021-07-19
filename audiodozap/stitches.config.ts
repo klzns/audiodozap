@@ -1,18 +1,15 @@
-import { createCss } from '@stitches/react';
+import { createCss, StitchesCss } from '@stitches/react'
+export type { StitchesVariants } from '@stitches/react'
 
-export const { styled, getCssString } = createCss({
-  theme: {
-    fonts: {
-      system: 'system-ui',
-    },
-    colors: {
-      hiContrast: 'hsl(206,10%,5%)',
-      loContrast: 'white',
-    },
-    fontSizes: {
-      1: '13px',
-      2: '15px',
-      3: '17px',
-    },
+export const stitches = createCss({
+  prefix: '',
+  utils: {},
+  media: {
+    phone: '(min-width: 600px)',
+    tablet: '(min-width: 1200px)',
   },
-});
+})
+
+export type CSS = StitchesCss<typeof stitches>
+
+export const { css, styled, global, theme, keyframes, getCssString } = stitches

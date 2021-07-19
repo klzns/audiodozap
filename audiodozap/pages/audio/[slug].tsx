@@ -1,71 +1,41 @@
-import { getPostBySlug, getAllPosts } from "../../lib/api"
-import markdownToHtml from "../../lib/markdownToHtml"
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import React from "react"
-import { Title } from "../../components/audio/Title"
+import { getPostBySlug, getAllPosts } from '../../lib/api'
+import type { Post } from '../../lib/api'
+import markdownToHtml from '../../lib/markdownToHtml'
 import Audio from '../../components/audio/Audio'
-import Link from 'next/link'
+import Wrapper from '../../components/Wrapper'
+import Header from '../../components/Header'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import SEODefault from '../../components/SEODefault'
+import SEOAudio from '../../components/SEOAudio'
 
-function djbHash(s: string) {
-  let hash = 5381
+export const config = { amp: 'hybrid ' }
 
-  for (const c of s) {
-    hash = hash * 33 + c.charCodeAt(0)
-  }
-
-  return hash
-}
-
-function mapToValues(s: string, number: number) {
-  const hash = djbHash(s)
-
-  return parseInt(hash.toString()[0], 10) % number
-}
-
-export default function Post({ post, morePosts, preview }: any) {
-  const router = useRouter()
-  if (!router.isFallback && !post?.slug) {
-    return <div>404</div>
-  }
-
-  const color = mapToValues(post.title, 7)
-
+export default function AudioPage({ post }: { post: Post }) {
   return (
-    <div>
-      <div>
-        {router.isFallback ? (
-          <p>Loading…</p>
-        ) : (
-          <>
-            <article className="mb-32">
-              <Head>
-                <title>
-                  {post.title} | Next.js Blog Example with
-                </title>
-                {/* <meta property="og:image" content={post.ogImage.url} /> */}
-              </Head>
-                <Title color={color}>
-                  <Link href="/audio"><a>{post.title}</a></Link> 
-                </Title>
-                <Audio title={post.title} file={post.audio} />
-              {post.date}
-              <div className="max-w-2xl mx-auto">
-                <div
-                  // className={markdownStyles['markdown']}
-                  dangerouslySetInnerHTML={{ __html: post.content }}
-                />
-              </div>
-            </article>
-          </>
-        )}
-      </div>
-    </div>
+    <Wrapper>
+      <Header index={false} contribute={false} />
+      <SEODefault />
+      <SEOAudio post={post} />
+
+      <Audio
+        title={post.title}
+        audio={post.audio}
+        excerpt={post.excerpt}
+        slug={post.slug}
+        colorNumber={post.colorNumber}
+        categories={post.categories}
+      >
+        <span dangerouslySetInnerHTML={{ __html: post.content }} />
+      </Audio>
+    </Wrapper>
   )
 }
 
-export async function getStaticProps({ params }: { params: { slug: string }}) {
-  const post = getPostBySlug(params.slug)
+export const getStaticProps: GetStaticProps<
+  { post: Partial<Post> & { content: string } },
+  { slug: string }
+> = async ({ params }) => {
+  const post = getPostBySlug(params!.slug)
   const content = await markdownToHtml(post?.content || '')
 
   return {
@@ -78,7 +48,7 @@ export async function getStaticProps({ params }: { params: { slug: string }}) {
   }
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllPosts()
 
   return {

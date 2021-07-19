@@ -2,6 +2,8 @@ import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
 import slugify from 'slugify'
+import { titleVariants } from '../components/audio/Title'
+import { colorSelection } from './colorSelection'
 
 export function getPosts() {
   const postsDirectory = join(process.cwd(), '..', 'blog')
@@ -14,12 +16,12 @@ export function getPosts() {
     const postsInDate = fs.readdirSync(dateDirectory).map((post) => ({
       date: directory,
       slug: post.replace(/\.mdx$/, ''),
-      path: join(dateDirectory, post)
+      path: join(dateDirectory, post),
     }))
 
     return postsInDate
   })
-  
+
   return result
 }
 
@@ -30,6 +32,8 @@ export type Post = {
   audio: string
   categories: string[]
   content: string
+  excerpt: string
+  colorNumber: number
 }
 
 export function getPostBySlug(slug: string): Post | null {
@@ -51,6 +55,8 @@ export function getPostBySlug(slug: string): Post | null {
     audio: data.audio,
     categories: data.categories,
     content,
+    colorNumber: colorSelection(data.title, titleVariants),
+    excerpt: content.length > 200 ? content.slice(0, 200) + '…' : content,
   }
 }
 
@@ -60,22 +66,23 @@ export function getAllPosts() {
     .filter(Boolean) as Post[]
 
   // sort posts by date in descending order
-  const result = posts
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
+  posts.sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
 
-  return result
+  return posts
+}
+
+export type PageInfo = {
+  hasNextPage: boolean
+  hasPreviousPage: boolean
+  page: number
+  from: number
+  to: number
 }
 
 export type Page = {
-  total: number,
-  edges: Post[],
-  pageInfo: {
-    hasNextPage: boolean,
-    hasPreviousPage: boolean,
-    page: number
-    from: number
-    to: number
-  }
+  total: number
+  edges: Post[]
+  pageInfo: PageInfo
 }
 
 export function paginatePosts(): Page[] {
@@ -98,7 +105,7 @@ export function paginatePosts(): Page[] {
         from,
         to,
       },
-      edges: posts.slice(from, to)
+      edges: posts.slice(from, to),
     })
 
     currentPage += 1
@@ -107,7 +114,7 @@ export function paginatePosts(): Page[] {
 
   pages = pages.map((page, index) => {
     page.pageInfo.hasNextPage = index !== pages.length - 1
-    page.pageInfo.hasPreviousPage = index === 0
+    page.pageInfo.hasPreviousPage = index !== 0
 
     return page
   })
@@ -116,6 +123,7 @@ export function paginatePosts(): Page[] {
 }
 
 export type Category = {
+  name: string
   slug: string
   quantity: number
   posts: Post[]
@@ -133,6 +141,7 @@ export function getCategories() {
         acc[categorySlug].posts.push(post)
       } else {
         acc[categorySlug] = {
+          name: category,
           slug: categorySlug,
           quantity: 1,
           posts: [post],

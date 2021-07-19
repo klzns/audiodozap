@@ -1,66 +1,55 @@
 import { paginatePosts, Page } from "../../lib/api"
-import markdownToHtml from "../../lib/markdownToHtml"
-import Head from 'next/head'
-import { useRouter } from 'next/router'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import React from 'react'
+import Wrapper from '../../components/Wrapper'
+import SEODefault from '../../components/SEODefault'
+import SEOSite from '../../components/SEOSite'
+import Header from '../../components/Header'
+import Audio from '../../components/audio/Audio'
+import Pagination from '../../components/Pagination'
 
-export default function PageC({ page }: { page: Page }) {
-  const router = useRouter()
-
+export default function PageX({ page }: { page: Page }) {
   return (
-    <div>
-      <pre>
-        {JSON.stringify(page, null, 2)}
-      </pre>
-    </div>
-  )
-  // if (!router.isFallback && !post?.slug) {
-  //   return <div>404</div>
-  // }
+    <Wrapper>
+      <SEODefault />
+      <SEOSite />
+      <Header index contribute />
 
-  // return (
-  //   <div>
-  //     <div>
-  //       {router.isFallback ? (
-  //         <p>Loading…</p>
-  //       ) : (
-  //         <>
-  //           <article className="mb-32">
-  //             <Head>
-  //               <title>
-  //                 {post.title} | Next.js Blog Example with
-  //               </title>
-  //               {/* <meta property="og:image" content={post.ogImage.url} /> */}
-  //             </Head>
-  //             {post.title}
-  //             {post.date}
-  //             <div className="max-w-2xl mx-auto">
-  //               <div
-  //                 // className={markdownStyles['markdown']}
-  //                 dangerouslySetInnerHTML={{ __html: post.content }}
-  //               />
-  //             </div>
-  //           </article>
-  //         </>
-  //       )}
-  //     </div>
-  //   </div>
-  // )
+      {page.edges.map((post) => (
+        <Audio
+          key={post.slug}
+          title={post.title}
+          audio={post.audio}
+          excerpt={post.excerpt}
+          slug={post.slug}
+          categories={post.categories}
+          colorNumber={post.colorNumber}
+        />
+      ))}
+
+      <Pagination pageInfo={page.pageInfo} total={page.total} />
+    </Wrapper>
+  )
 }
 
-export async function getStaticProps({ params }: { params: { page: number }}) {
+export const getStaticProps: GetStaticProps<
+  { page: Page },
+  { page: string }
+> = async ({ params }) => {
   const pages = paginatePosts()
 
   return {
     props: {
-      page: pages[params.page - 1]
+      page: pages[parseInt(params!.page) - 1],
     },
   }
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = () => {
   const pages = paginatePosts()
 
   return {
+    fallback: false,
     paths: pages.map((page) => {
       return {
         params: {
@@ -68,6 +57,5 @@ export async function getStaticPaths() {
         },
       }
     }),
-    fallback: false,
   }
 }

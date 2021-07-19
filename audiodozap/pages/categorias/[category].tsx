@@ -1,63 +1,68 @@
-import { getPostBySlug, getCategories, Category } from "../../lib/api"
-import markdownToHtml from "../../lib/markdownToHtml"
-import Head from 'next/head'
-import { useRouter } from 'next/router'
+import { getCategories, Category } from '../../lib/api'
+import { StyledLink } from '../../components/StyledLink'
+import Audio from '../../components/audio/Audio'
+import { categoriesUrl } from '../../lib/url'
+import Header from '../../components/Header'
+import Wrapper from '../../components/Wrapper'
+import type { GetStaticPaths, GetStaticProps } from 'next'
+import SEODefault from '../../components/SEODefault'
+import SEOCategory from '../../components/SEOCategory'
+import CategoryTitle from '../../components/CategoryTitle'
 
-export default function Post({ category }: { category: Category }) {
-  const router = useRouter()
-  return (
-    <div>
-      <pre>
-        {JSON.stringify(category, null, 2)}
-      </pre>
-    </div>
-  )
-  // if (!router.isFallback && !post?.slug) {
-  //   return <div>404</div>
-  // }
-
-  // return (
-  //   <div>
-  //     <div>
-  //       {router.isFallback ? (
-  //         <p>Loading…</p>
-  //       ) : (
-  //         <>
-  //           <article className="mb-32">
-  //             <Head>
-  //               <title>
-  //                 {post.title} | Next.js Blog Example with
-  //               </title>
-  //               {/* <meta property="og:image" content={post.ogImage.url} /> */}
-  //             </Head>
-  //             {post.title}
-  //             {post.date}
-  //             <div className="max-w-2xl mx-auto">
-  //               <div
-  //                 // className={markdownStyles['markdown']}
-  //                 dangerouslySetInnerHTML={{ __html: post.content }}
-  //               />
-  //             </div>
-  //           </article>
-  //         </>
-  //       )}
-  //     </div>
-  //   </div>
-  // )
+type Props = {
+  category: Category
 }
 
-export async function getStaticProps({ params }: { params: { category: string }}) {
+export default function CategoryPage({ category }: Props) {
+  const subline = `${category.quantity} áudio${
+    category.quantity === 1 ? '' : 's'
+  } na categoria "${category.name}"`
+
+  return (
+    <Wrapper>
+      <SEODefault />
+      <SEOCategory category={category} />
+      <Header index={false} contribute />
+
+      <CategoryTitle
+        title={`Categoria – ${category.name}`}
+        subtitle={
+          <>
+            {subline} (Ver{' '}
+            <StyledLink href={categoriesUrl()}>todas as categorias</StyledLink>)
+          </>
+        }
+      />
+      {category.posts.map((post) => (
+        <Audio
+          key={post.slug}
+          title={post.title}
+          audio={post.audio}
+          excerpt={post.excerpt}
+          slug={post.slug}
+          colorNumber={post.colorNumber}
+          categories={post.categories}
+        />
+      ))}
+    </Wrapper>
+  )
+}
+
+export const getStaticProps: GetStaticProps<
+  { category: Category },
+  { category: string }
+> = async ({ params }) => {
   const categories = getCategories()
-  const categoryData = categories[params.category]
+  const categoryData = categories[params!.category]
 
   return {
     props: {
-      category: categoryData
+      category: categoryData,
     },
   }
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const categories = getCategories()
 
   const categoriesSlugs = Object.keys(categories)
