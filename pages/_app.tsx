@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import { styled } from 'twin.macro'
 import Head from 'next/head'
 import { StyledLink } from '../components/StyledLink'
+import GoogleAnalyticsScript from '../components/GoogleAnalyticsScript'
 
 const Footer = styled.footer({
   textAlign: 'center',
@@ -26,6 +27,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no"
         />
       </Head>
+      <GoogleAnalyticsScript />
+
       <div tw="min-h-screen flex flex-col">
         <div tw="flex-grow">
           <Component {...pageProps} />
