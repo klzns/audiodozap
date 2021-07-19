@@ -92,7 +92,7 @@ function SEOAudio({ post }: SEOAudioProps) {
         content={`${config.siteUrl}${audioPlayerUrl(post.slug)}`}
       />
       <meta name="twitter:player:width" content="300" />
-      <meta name="twitter:player:height" content="70" />
+      <meta name="twitter:player:height" content="86" />
 
       <script type="application/ld+json">
         {JSON.stringify(schemaArticle)}

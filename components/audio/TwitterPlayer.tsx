@@ -5,7 +5,7 @@ function TwitterPlayer({ audio }: { audio?: string }) {
   const url = `${baseUrl}${audio}`
 
   return (
-    <div tw="flex justify-center w-full items-center px-2 pt-9">
+    <div tw="flex justify-center w-full h-full items-center px-2 py-4">
       <style>
         {`
         body {
