@@ -5,12 +5,13 @@ function TwitterPlayer({ audio }: { audio?: string }) {
   const url = `${baseUrl}${audio}`
 
   return (
-    <div tw="flex justify-center w-full h-screen items-center px-2">
+    <div tw="flex justify-center w-full items-center px-2 pt-9">
       <style>
         {`
         body {
-          background: white !important;
+          background: transparent !important;
         }
+        footer { display: none !important; }
         `}
       </style>
       <audio controls tw="w-full">
