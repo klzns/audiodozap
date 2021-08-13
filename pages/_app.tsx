@@ -13,6 +13,16 @@ const Footer = styled.footer({
   fontSize: '0.75rem',
 })
 
+// Remove Gatsby SW
+global?.window?.navigator?.serviceWorker.getRegistrations()
+  .then((registrations) => {
+    for(const registration of registrations) {
+      registration.unregister()
+    }
+  }).catch((err) => {
+    console.log('Service Worker registration failed: ', err);
+  });
+
 function MyApp({ Component, pageProps }: AppProps) {
   globalStyles()
 
