@@ -30,7 +30,7 @@
     "eslint-config-next": "11.0.1",
     "next-sitemap": "^1.6.140",
     "remark": "^13.0.0",
-    "remark-html": "^13.0.1",
+    "remark-html": "^13.0.2",
     "tailwindcss": "^2.2.4",
     "ts-node": "^10.0.0",
     "twin.macro": "^2.6.2",
